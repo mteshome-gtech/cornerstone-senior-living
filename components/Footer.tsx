@@ -1,58 +1,71 @@
 import Link from "next/link";
 
+const exploreLinks = [
+  { label: "Our Home", href: "/our-home" },
+  { label: "Life at Corner Stone", href: "/life-at-corner-stone" },
+  { label: "Care", href: "/care" },
+  { label: "Our Story", href: "/about" },
+  { label: "Gallery", href: "/gallery" },
+];
+
 export default function Footer() {
   return (
-    <footer className="bg-[#24221f] text-white">
-      <div className="container-luxury py-20">
-        <div className="grid gap-12 md:grid-cols-3">
-          <div>
-            <div className="serif text-3xl">Corner Stone</div>
-            <div className="mt-1 text-[10px] uppercase tracking-[0.3em] text-white/50">
-              Senior Living
-            </div>
+    <footer className="site-footer">
+      <div className="container">
+        <div className="footer__top">
+          <div className="footer__brand">
+            <span className="eyebrow">Corner Stone Senior Living</span>
 
-            <p className="mt-6 max-w-sm text-sm leading-7 text-white/60">
-              The comfort of home. The quality of exceptional care.
+            <h2 className="footer__brand-name">
+              The comfort of home.
+            </h2>
+
+            <p className="footer__tagline">
+              The quality of exceptional care.
+            </p>
+
+            <p className="footer__description">
+              A residential approach to senior living, designed around
+              comfort, dignity, connection, and exceptional care.
             </p>
           </div>
 
           <div>
-            <h3 className="text-xs uppercase tracking-[0.2em] text-[#b49a6a]">
-              Explore
-            </h3>
+            <span className="footer__heading">Explore</span>
 
-            <div className="mt-5 flex flex-col gap-3 text-sm text-white/65">
-              <Link href="/our-home">Our Home</Link>
-              <Link href="/life-at-corner-stone">Life at Corner Stone</Link>
-              <Link href="/care">Care</Link>
-              <Link href="/about">Our Story</Link>
-              <Link href="/gallery">Gallery</Link>
-            </div>
+            <nav className="footer__links" aria-label="Footer navigation">
+              {exploreLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="footer__link"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
           </div>
 
           <div>
-            <h3 className="text-xs uppercase tracking-[0.2em] text-[#b49a6a]">
-              Visit
-            </h3>
+            <span className="footer__heading">Visit</span>
 
-            <p className="mt-5 text-sm leading-7 text-white/65">
-              Allen, Texas
-              <br />
-              By private appointment
-            </p>
+            <div className="footer__visit">
+              <p>Corner Stone Senior Living</p>
+              <p>Allen, Texas</p>
+              <p>By private appointment</p>
+            </div>
 
-            <Link
-              href="/contact"
-              className="mt-5 inline-block text-sm text-white underline underline-offset-8"
-            >
-              Schedule a private visit
+            <Link href="/contact" className="footer__visit-link">
+              Plan a Private Visit
+              <span aria-hidden="true">↗</span>
             </Link>
           </div>
         </div>
 
-        <div className="mt-16 border-t border-white/10 pt-6 text-xs text-white/35">
-          © 2026 Corner Stone Senior Living. All rights
-          reserved.
+        <div className="footer__bottom">
+          <p>© {new Date().getFullYear()} Corner Stone Senior Living</p>
+
+          <p>Residential by design.</p>
         </div>
       </div>
     </footer>

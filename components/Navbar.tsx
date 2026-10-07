@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const navigation = [
+const links = [
   { label: "Our Home", href: "/our-home" },
   { label: "Life", href: "/life-at-corner-stone" },
   { label: "Care", href: "/care" },
@@ -13,7 +13,7 @@ const navigation = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,7 +21,6 @@ export default function Navbar() {
     };
 
     handleScroll();
-
     window.addEventListener("scroll", handleScroll);
 
     return () => {
@@ -30,122 +29,152 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
+    document.body.style.overflow = open ? "hidden" : "";
 
     return () => {
       document.body.style.overflow = "";
     };
-  }, [menuOpen]);
+  }, [open]);
 
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "border-b border-[rgba(28,41,36,0.12)] bg-[#f4f1eb]/95 backdrop-blur-md"
-            : "bg-transparent"
+        className={`site-header ${
+          scrolled ? "site-header--scrolled" : ""
         }`}
       >
-        <div className="mx-auto flex h-[82px] w-[min(100%-48px,1440px)] items-center justify-between">
-          {/* Brand */}
+        <div className="container nav">
           <Link
             href="/"
-            className="group flex items-center"
-            onClick={() => setMenuOpen(false)}
+            className="nav__brand"
+            onClick={() => setOpen(false)}
+            aria-label="Corner Stone Senior Living home"
           >
-            <div className="flex flex-col">
-              <span className="font-serif text-[19px] leading-none tracking-[-0.02em]">
-                Corner Stone
-              </span>
-
-              <span className="mt-[6px] text-[8px] font-semibold uppercase tracking-[0.24em] opacity-60">
-                Senior Living
-              </span>
-            </div>
+            Corner Stone
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden items-center gap-8 lg:flex">
-            {navigation.map((item) => (
-              <Link key={item.href} href={item.href} className="nav-link">
-                {item.label}
+          <nav className="nav__links" aria-label="Main navigation">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="nav__link"
+              >
+                {link.label}
               </Link>
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <Link
-            href="/contact"
-            className="hidden border border-[#1c2924] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.14em] transition-all duration-300 hover:bg-[#1c2924] hover:text-[#f4f1eb] lg:inline-flex"
-          >
-            Private Visit
-          </Link>
+          <div className="nav__action">
+            <Link href="/contact" className="button button--light">
+              Private Visit
+            </Link>
+          </div>
 
-          {/* Mobile Menu Button */}
           <button
             type="button"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((value) => !value)}
-            className="relative z-[60] flex h-10 w-10 items-center justify-center lg:hidden"
+            className="nav__mobile-button"
+            aria-label={open ? "Close navigation" : "Open navigation"}
+            aria-expanded={open}
+            onClick={() => setOpen((current) => !current)}
           >
-            <span className="flex w-5 flex-col gap-[5px]">
+            <span
+              aria-hidden="true"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                width: "18px",
+              }}
+            >
               <span
-                className={`block h-px w-full bg-current transition-transform duration-300 ${
-                  menuOpen ? "translate-y-[3px] rotate-45" : ""
-                }`}
+                style={{
+                  display: "block",
+                  width: "100%",
+                  height: "1px",
+                  background: "currentColor",
+                  transform: open
+                    ? "translateY(3px) rotate(45deg)"
+                    : "none",
+                  transition: "transform 220ms ease",
+                }}
               />
 
               <span
-                className={`block h-px w-full bg-current transition-opacity duration-300 ${
-                  menuOpen ? "opacity-0" : ""
-                }`}
+                style={{
+                  display: "block",
+                  width: "100%",
+                  height: "1px",
+                  background: "currentColor",
+                  opacity: open ? 0 : 1,
+                  transition: "opacity 180ms ease",
+                }}
               />
 
               <span
-                className={`block h-px w-full bg-current transition-transform duration-300 ${
-                  menuOpen ? "-translate-y-[3px] -rotate-45" : ""
-                }`}
+                style={{
+                  display: "block",
+                  width: "100%",
+                  height: "1px",
+                  background: "currentColor",
+                  transform: open
+                    ? "translateY(-3px) rotate(-45deg)"
+                    : "none",
+                  transition: "transform 220ms ease",
+                }}
               />
             </span>
           </button>
         </div>
       </header>
 
-      {/* Mobile Navigation */}
       <div
-        className={`fixed inset-0 z-40 bg-[#26352f] text-[#f4f1eb] transition-all duration-500 lg:hidden ${
-          menuOpen
-            ? "pointer-events-auto opacity-100"
-            : "pointer-events-none opacity-0"
+        aria-hidden={!open}
+        className={`mobile-menu ${
+          open ? "mobile-menu--open" : ""
         }`}
       >
-        <div className="flex h-full flex-col justify-between px-8 pb-10 pt-[130px]">
-          <nav className="flex flex-col">
-            {navigation.map((item, index) => (
+        <div className="mobile-menu__inner">
+          <nav
+            className="mobile-menu__nav"
+            aria-label="Mobile navigation"
+          >
+            {links.map((link, index) => (
               <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setMenuOpen(false)}
-                className="border-b border-white/15 py-5 font-serif text-[clamp(2.1rem,9vw,3.5rem)] leading-none tracking-[-0.03em]"
+                key={link.href}
+                href={link.href}
+                className="mobile-menu__link"
+                onClick={() => setOpen(false)}
                 style={{
-                  transitionDelay: menuOpen ? `${index * 45}ms` : "0ms",
+                  transitionDelay: open
+                    ? `${index * 45}ms`
+                    : "0ms",
                 }}
               >
-                {item.label}
+                <span className="mobile-menu__number">
+                  0{index + 1}
+                </span>
+
+                <span>{link.label}</span>
               </Link>
             ))}
           </nav>
 
-          <div className="border-t border-white/15 pt-6">
-            <p className="mb-4 text-[9px] font-semibold uppercase tracking-[0.2em] opacity-50">
-              Begin a conversation
-            </p>
+          <div className="mobile-menu__footer">
+            <div>
+              <span className="eyebrow">Corner Stone</span>
+
+              <p>
+                The comfort of home.
+                <br />
+                The quality of exceptional care.
+              </p>
+            </div>
 
             <Link
               href="/contact"
-              onClick={() => setMenuOpen(false)}
-              className="inline-flex border border-[#f4f1eb] px-6 py-4 text-[10px] font-semibold uppercase tracking-[0.16em]"
+              className="button button--light"
+              onClick={() => setOpen(false)}
             >
               Request a Private Visit
             </Link>

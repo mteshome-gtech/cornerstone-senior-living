@@ -1,213 +1,235 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import Hero from "@/components/Hero";
-import { ArrowUpRight } from "lucide-react";
+import CTA from "@/components/CTA";
+
+const pillars = [
+  {
+    number: "01",
+    title: "Life",
+    text: "A warm residential environment where everyday living feels comfortable, familiar, and meaningful.",
+    href: "/life-at-corner-stone",
+  },
+  {
+    number: "02",
+    title: "Care",
+    text: "Thoughtful support centered around each resident as an individual, with dignity at the heart of every interaction.",
+    href: "/care",
+  },
+  {
+    number: "03",
+    title: "Family",
+    text: "A family-owned home where relationships matter and communication remains personal.",
+    href: "/about",
+  },
+];
 
 export default function Home() {
   return (
     <>
       <Hero image="/assets/home/hero.jpg" />
 
-      {/* INTRO */}
-      <section className="bg-[#f7f4ee] py-28 md:py-36">
-        <div className="container-luxury grid gap-12 md:grid-cols-2">
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-[#b49a6a]">
-              A Different Kind of Senior Living
-            </p>
-          </div>
+      <section className="section section--cream">
+        <div className="container">
+          <div className="editorial">
+            <div className="editorial__label">
+              <span className="eyebrow">
+                A different kind of senior living
+              </span>
+            </div>
 
-          <div>
-            <h2 className="serif text-4xl leading-tight md:text-6xl">
-              More than a place to live.
-              <br />
-              It is home.
-            </h2>
+            <div className="editorial__content">
+              <h2 className="display-md">
+                More than a place to live.
+                <br />
+                It is home.
+              </h2>
 
-            <p className="mt-8 max-w-xl text-base leading-8 text-black/60">
-              Corner Stone Senior Living was created around a simple belief:
-              senior living should feel personal. Our residential approach
-              creates an environment where residents can enjoy the comfort of
-              home while receiving thoughtful, individualized support.
-            </p>
+              <p className="body-copy">
+                Corner Stone Senior Living was created around a simple
+                belief: senior living should feel personal. Our
+                residential approach creates an environment where
+                residents can enjoy the comfort of home while receiving
+                thoughtful, individualized support.
+              </p>
 
-            <Link
-              href="/our-home"
-              className="mt-8 inline-flex items-center gap-3 border-b border-[#b49a6a] pb-2 text-xs uppercase tracking-[0.18em]"
-            >
-              Explore Our Home
-              <ArrowUpRight size={15} />
-            </Link>
+              <Link
+                href="/our-home"
+                className="footer__visit-link"
+              >
+                Explore Our Home
+                <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* FEATURE IMAGE */}
-      <section className="relative min-h-[75vh] overflow-hidden">
+      <section className="full-image">
         <Image
           src="/assets/home/home-01.jpg"
-          alt="Corner Stone Senior Living"
-          fill
+          alt="Interior of Corner Stone Senior Living"
+          width={2400}
+          height={1350}
           sizes="100vw"
-          className="object-cover"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-r from-[#211c17]/80 via-[#211c17]/25 to-transparent" />
+        <div className="hero__overlay" />
 
-        <div className="relative z-10 flex min-h-[75vh] items-end">
-          <div className="container-luxury pb-20 text-white">
-            <p className="text-xs uppercase tracking-[0.3em] text-[#d8c5a0]">
-              Thoughtful Living
-            </p>
+        <div
+          className="container"
+          style={{
+            position: "absolute",
+            inset: "auto 0 0",
+            paddingBottom: "clamp(60px, 8vw, 110px)",
+            color: "var(--white)",
+          }}
+        >
+          <span className="eyebrow">
+            Thoughtful living
+          </span>
 
-            <h2 className="serif mt-5 max-w-2xl text-5xl leading-tight md:text-7xl">
-              Everyday moments,
-              <br />
-              made meaningful.
-            </h2>
-          </div>
+          <h2
+            className="display-lg"
+            style={{ maxWidth: "800px", marginTop: "20px" }}
+          >
+            Everyday moments,
+            <br />
+            made meaningful.
+          </h2>
         </div>
       </section>
 
-      {/* THREE PILLARS */}
-      <section className="bg-[#eee8dc] py-28">
-        <div className="container-luxury">
-          <div className="max-w-2xl">
-            <p className="text-xs uppercase tracking-[0.3em] text-[#b49a6a]">
-              The Corner Stone Approach
-            </p>
+      <section className="section section--light">
+        <div className="container">
+          <div className="editorial">
+            <div className="editorial__label">
+              <span className="eyebrow">
+                The Corner Stone approach
+              </span>
+            </div>
 
-            <h2 className="serif mt-5 text-4xl md:text-6xl">
-              Designed around people, not processes.
-            </h2>
+            <div className="editorial__content">
+              <h2 className="display-md">
+                Designed around people,
+                <br />
+                not processes.
+              </h2>
+            </div>
           </div>
 
-          <div className="mt-16 grid gap-px overflow-hidden rounded-3xl bg-black/10 md:grid-cols-3">
-            {[
-              {
-                number: "01",
-                title: "Life",
-                text: "A warm residential environment designed to make everyday living feel comfortable, familiar, and beautiful.",
-                href: "/life-at-corner-stone",
-              },
-              {
-                number: "02",
-                title: "Care",
-                text: "Thoughtful support centered around each resident as an individual, with dignity and respect at the heart of the experience.",
-                href: "/care",
-              },
-              {
-                number: "03",
-                title: "Family",
-                text: "A family-owned community where relationships matter and communication remains personal.",
-                href: "/about",
-              },
-            ].map((item) => (
+          <div
+            className="editorial-list"
+            style={{ marginTop: "80px" }}
+          >
+            {pillars.map((pillar) => (
               <Link
-                href={item.href}
-                key={item.number}
-                className="group bg-[#f7f4ee] p-9 transition hover:bg-[#24221f] hover:text-white md:p-12"
+                href={pillar.href}
+                key={pillar.number}
+                className="editorial-list__item"
               >
-                <div className="text-xs tracking-[0.2em] text-[#b49a6a]">
-                  {item.number}
-                </div>
+                <span className="editorial-list__number">
+                  {pillar.number}
+                </span>
 
-                <h3 className="serif mt-16 text-4xl">{item.title}</h3>
+                <h3 className="editorial-list__title">
+                  {pillar.title}
+                </h3>
 
-                <p className="mt-5 text-sm leading-7 opacity-60">
-                  {item.text}
+                <p className="editorial-list__description">
+                  {pillar.text}
                 </p>
-
-                <div className="mt-10 text-xs uppercase tracking-[0.2em] opacity-50">
-                  Discover →
-                </div>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAMILY STORY */}
-      <section className="bg-[#f7f4ee] py-28 md:py-36">
-        <div className="container-luxury grid items-center gap-16 md:grid-cols-2">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem]">
-            <Image
-              src="/assets/home/home-02.jpg"
-              alt="Corner Stone residential home"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
-            />
-          </div>
+      <section className="section section--cream">
+        <div className="container">
+          <div className="image-editorial image-editorial--reverse">
+            <div className="image-editorial__media">
+              <Image
+                src="/assets/home/home-02.jpg"
+                alt="Corner Stone residential home"
+                width={1400}
+                height={1750}
+                sizes="(max-width: 900px) 100vw, 58vw"
+              />
+            </div>
 
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-[#b49a6a]">
-              Family-Owned. Personal by Nature.
-            </p>
+            <div className="image-editorial__content">
+              <span className="eyebrow">
+                Family-owned. Personal by nature.
+              </span>
 
-            <h2 className="serif mt-5 text-4xl leading-tight md:text-6xl">
-              Built around family.
-            </h2>
+              <h2 className="display-md">
+                Built around family.
+              </h2>
 
-            <p className="mt-8 text-base leading-8 text-black/60">
-              Corner Stone Senior Living is a family-owned and family-operated
-              residential senior living home in Allen, Texas. Our approach is
-              rooted in the belief that the best care begins with genuine
-              relationships, a welcoming environment, and the feeling that you
-              truly belong.
-            </p>
+              <p className="body-copy">
+                Corner Stone Senior Living is a family-owned and
+                family-operated residential senior living home in
+                Allen, Texas. Our approach is rooted in the belief
+                that the best care begins with genuine relationships,
+                a welcoming environment, and the feeling that you
+                truly belong.
+              </p>
 
-            <Link
-              href="/about"
-              className="mt-9 inline-flex items-center gap-3 rounded-full border border-[#24221f]/20 px-6 py-3 text-xs uppercase tracking-[0.16em] transition hover:bg-[#24221f] hover:text-white"
-            >
-              Meet Our Family
-              <ArrowUpRight size={15} />
-            </Link>
+              <Link
+                href="/about"
+                className="footer__visit-link"
+              >
+                Meet Our Family
+                <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* GALLERY STRIP */}
-      <section className="bg-[#24221f] py-24">
-        <div className="container-luxury">
-          <div className="flex items-end justify-between gap-6">
-            <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-[#b49a6a]">
-                A Place to Belong
-              </p>
-
-              <h2 className="serif mt-4 text-4xl text-white md:text-6xl">
-                See what home feels like.
-              </h2>
+      <section className="section section--forest">
+        <div className="container">
+          <div className="editorial">
+            <div className="editorial__label">
+              <span className="eyebrow">
+                A place to belong
+              </span>
             </div>
 
-            <Link
-              href="/gallery"
-              className="hidden text-xs uppercase tracking-[0.16em] text-white/60 hover:text-white md:block"
-            >
-              View Gallery →
-            </Link>
+            <div className="editorial__content">
+              <h2 className="display-md">
+                See what home feels like.
+              </h2>
+
+              <Link
+                href="/gallery"
+                className="footer__visit-link"
+              >
+                View Gallery
+                <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
+          <div className="gallery-grid" style={{ marginTop: "70px" }}>
             {[
               "/assets/home/home-03.jpg",
               "/assets/home/home-04.jpg",
               "/assets/home/home-05.jpg",
+              "/assets/home/home-06.jpg",
             ].map((src, index) => (
               <div
                 key={src}
-                className={`relative overflow-hidden rounded-3xl ${
-                  index === 1 ? "aspect-[4/5] md:-translate-y-10" : "aspect-[4/5]"
-                }`}
+                className="gallery-grid__item"
               >
                 <Image
                   src={src}
-                  alt="Corner Stone Senior Living"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover transition duration-700 hover:scale-105"
+                  alt={`Corner Stone Senior Living interior ${index + 1}`}
+                  width={1200}
+                  height={900}
+                  sizes="(max-width: 900px) 50vw, 33vw"
                 />
               </div>
             ))}
@@ -215,57 +237,45 @@ export default function Home() {
         </div>
       </section>
 
-      {/* LOCATION */}
-      <section className="bg-[#eee8dc] py-28">
-        <div className="container-luxury grid gap-12 md:grid-cols-2">
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-[#b49a6a]">
-              Allen, Texas
-            </p>
+      <section className="section section--light">
+        <div className="container">
+          <div className="editorial">
+            <div className="editorial__label">
+              <span className="eyebrow">
+                Allen, Texas
+              </span>
+            </div>
 
-            <h2 className="serif mt-5 text-4xl leading-tight md:text-6xl">
-              Close to what matters.
-            </h2>
-          </div>
+            <div className="editorial__content">
+              <h2 className="display-md">
+                Close to what matters.
+              </h2>
 
-          <div>
-            <p className="text-base leading-8 text-black/60">
-              Nestled in Allen, Texas, Corner Stone offers a peaceful
-              residential setting while remaining connected to the people,
-              places, and conveniences that make North Texas home.
-            </p>
+              <p className="body-copy">
+                Nestled in Allen, Texas, Corner Stone offers a
+                peaceful residential setting while remaining
+                connected to the people, places, and conveniences
+                that make North Texas home.
+              </p>
 
-            <Link
-              href="/contact"
-              className="mt-8 inline-block rounded-full bg-[#24221f] px-7 py-4 text-xs uppercase tracking-[0.16em] text-white"
-            >
-              Plan a Visit
-            </Link>
+              <Link
+                href="/contact"
+                className="button button--dark"
+                style={{ marginTop: "34px" }}
+              >
+                Plan a Private Visit
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* FINAL CTA */}
-      <section className="relative overflow-hidden bg-[#3a3028] py-32 text-center text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(180,154,106,0.22),transparent_55%)]" />
-
-        <div className="container-luxury relative">
-          <p className="text-xs uppercase tracking-[0.3em] text-[#d8c5a0]">
-            Come See for Yourself
-          </p>
-
-          <h2 className="serif mx-auto mt-6 max-w-4xl text-5xl leading-tight md:text-7xl">
-            A beautiful place to call home.
-          </h2>
-
-          <Link
-            href="/contact"
-            className="mt-10 inline-block rounded-full bg-[#b49a6a] px-8 py-4 text-xs uppercase tracking-[0.16em] transition hover:bg-white hover:text-[#24221f]"
-          >
-            Schedule a Private Visit
-          </Link>
-        </div>
-      </section>
+      <CTA
+        eyebrow="Come see for yourself"
+        title="A beautiful place to call home."
+        description="We would love to welcome you into Corner Stone and let you experience the home for yourself."
+        buttonText="Schedule a Private Visit"
+      />
     </>
   );
 }
