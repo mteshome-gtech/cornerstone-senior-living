@@ -1,26 +1,59 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ivory: #f7f4ee;
+  --cream: #eee8dc;
+  --stone: #d8d0c3;
+  --charcoal: #24221f;
+  --espresso: #3a3028;
+  --sage: #7c8775;
+  --gold: #b49a6a;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  margin: 0;
+  background: var(--ivory);
+  color: var(--charcoal);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: #b49a6a;
+  color: white;
+}
+
+.serif {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.container-luxury {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.luxury-border {
+  border-color: rgba(36, 34, 31, 0.12);
+}
+
+.image-overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(36, 30, 24, 0.84) 0%,
+      rgba(36, 30, 24, 0.48) 48%,
+      rgba(36, 30, 24, 0.08) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.02),
+      rgba(0, 0, 0, 0.4)
+    );
 }
