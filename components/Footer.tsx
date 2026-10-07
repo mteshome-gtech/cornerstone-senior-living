@@ -51,7 +51,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 border-t border-white/10 pt-6 text-xs text-white/35">
-          © {new Date().getFullYear()} Corner Stone Senior Living. All rights
+          © 2026 Corner Stone Senior Living. All rights
           reserved.
         </div>
       </div>
