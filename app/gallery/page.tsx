@@ -1,13 +1,13 @@
 import Image from "next/image";
 
 const images = [
-  "/assets/home/home-01.jpg",
-  "/assets/home/home-02.jpg",
-  "/assets/home/home-03.jpg",
-  "/assets/home/home-04.jpg",
-  "/assets/home/home-05.jpg",
-  "/assets/home/home-06.jpg",
-  "/assets/home/home-07.jpg",
+  "/assets/home/home-01.webp",
+  "/assets/home/home-02.webp",
+  "/assets/home/home-03.webp",
+  "/assets/home/home-04.webp",
+  "/assets/home/home-05.webp",
+  "/assets/home/home-06.webp",
+  "/assets/home/home-07.webp",
 ];
 
 export default function GalleryPage() {

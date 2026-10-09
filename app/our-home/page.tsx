@@ -2,12 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 const images = [
-  "/assets/home/home-01.jpg",
-  "/assets/home/home-02.jpg",
-  "/assets/home/home-03.jpg",
-  "/assets/home/home-04.jpg",
-  "/assets/home/home-05.jpg",
-  "/assets/home/home-06.jpg",
+  "/assets/home/home-01.webp",
+  "/assets/home/home-02.webp",
+  "/assets/home/home-03.webp",
+  "/assets/home/home-04.webp",
+  "/assets/home/home-05.webp",
+  "/assets/home/home-06.webp",
 ];
 
 export default function OurHome() {
@@ -16,11 +16,12 @@ export default function OurHome() {
       <section className="hero">
         <div className="hero__media">
           <Image
-            src="/assets/home/home-01.jpg"
-            alt="Corner Stone Senior Living home in Allen, Texas"
+            src="/assets/lifestyle/patient_care.jpg"
+            alt="Thoughtful care in the welcoming residential setting of Corner Stone Senior Living"
             fill
             priority
             sizes="100vw"
+            style={{ objectFit: "cover" }}
           />
         </div>
 
@@ -48,9 +49,7 @@ export default function OurHome() {
         <div className="container">
           <div className="editorial">
             <div className="editorial__label">
-              <span className="eyebrow">
-                The residence
-              </span>
+              <span className="eyebrow">The residence</span>
             </div>
 
             <div className="editorial__content">
