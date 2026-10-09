@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap");
 
 /* =========================================================
    CORNER STONE SENIOR LIVING
@@ -1215,5 +1215,468 @@ button {
 
   .mobile-menu__footer .button {
     margin-top: 24px;
+  }
+}
+
+/* =========================================================
+   CORNER STONE — PRIVATE VISIT PICKERS
+   Scoped to the custom contact-form controls only.
+   The existing page layouts and global palette remain intact.
+   ========================================================= */
+
+:root {
+  --picker-terracotta: #b96032;
+  --picker-terracotta-deep: #994a27;
+  --picker-walnut: #674735;
+  --picker-walnut-deep: #4e3427;
+  --picker-ivory: #fff8ed;
+  --picker-cream: #f4ebdd;
+  --picker-champagne: #c2a06a;
+  --picker-muted: #cbb9a5;
+  --picker-serif: "Bodoni Moda", "Cormorant Garamond", "Times New Roman", serif;
+}
+
+/* Shared trigger treatment */
+.luxury-select,
+.luxury-picker {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.luxury-select__trigger,
+.luxury-picker__trigger {
+  display: flex;
+  width: 100%;
+  min-height: 58px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 15px 17px;
+  border: 1px solid rgba(103, 71, 53, 0.25);
+  border-radius: 2px;
+  background: var(--picker-ivory);
+  color: var(--picker-walnut);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(54, 37, 26, 0.025);
+  transition:
+    border-color 220ms ease,
+    background-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.luxury-select__trigger:hover,
+.luxury-picker__trigger:hover {
+  border-color: var(--picker-champagne);
+  box-shadow: 0 5px 18px rgba(54, 37, 26, 0.07);
+}
+
+.luxury-select__trigger:focus-visible,
+.luxury-picker__trigger:focus-visible,
+.luxury-calendar__nav-button:focus-visible,
+.luxury-calendar__day:focus-visible,
+.luxury-time__option:focus-visible {
+  outline: 2px solid var(--picker-champagne);
+  outline-offset: 3px;
+}
+
+.luxury-select__trigger--selected,
+.luxury-picker__trigger--selected {
+  border-color: rgba(103, 71, 53, 0.42);
+  color: var(--picker-walnut-deep);
+}
+
+.luxury-picker__trigger svg,
+.luxury-select__trigger svg {
+  flex: 0 0 auto;
+  color: var(--picker-terracotta);
+  transition: transform 220ms ease;
+}
+
+.luxury-select__trigger[data-state="open"] svg {
+  transform: rotate(180deg);
+}
+
+.luxury-picker__trigger:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.luxury-picker__placeholder {
+  color: #887766;
+}
+
+/* Relationship / interest dropdown: floating walnut panel */
+.luxury-select__content {
+  z-index: 1000;
+  min-width: var(--radix-select-trigger-width);
+  max-height: min(340px, var(--radix-select-content-available-height));
+  overflow: hidden;
+  padding: 7px;
+  border: 1px solid rgba(194, 160, 106, 0.62);
+  border-radius: 4px;
+  background: linear-gradient(145deg, #70503b 0%, var(--picker-walnut-deep) 100%);
+  color: var(--picker-ivory);
+  box-shadow:
+    0 22px 55px rgba(35, 24, 17, 0.24),
+    0 3px 10px rgba(35, 24, 17, 0.1);
+  transform-origin: var(--radix-select-content-transform-origin);
+  animation: picker-enter 180ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+.luxury-select__viewport {
+  padding: 2px;
+}
+
+.luxury-select__item {
+  position: relative;
+  display: flex;
+  min-height: 46px;
+  align-items: center;
+  padding: 11px 42px 11px 14px;
+  border-radius: 2px;
+  color: #fff8ed;
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.4;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.luxury-select__item + .luxury-select__item {
+  border-top: 1px solid rgba(255, 248, 237, 0.08);
+}
+
+.luxury-select__item[data-highlighted] {
+  background: rgba(194, 160, 106, 0.22);
+  color: #fffdf8;
+}
+
+.luxury-select__item[data-state="checked"] {
+  background: rgba(194, 160, 106, 0.28);
+  color: #fffdf8;
+}
+
+.luxury-select__indicator {
+  position: absolute;
+  right: 13px;
+  display: inline-flex;
+  align-items: center;
+  color: #e6c58e;
+}
+
+/* Date calendar: terracotta surface, ivory dates, champagne detailing */
+.luxury-calendar {
+  position: relative;
+  z-index: 1000;
+  width: min(356px, calc(100vw - 32px));
+  padding: 22px;
+  border: 1px solid rgba(194, 160, 106, 0.78);
+  border-radius: 5px;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(255, 226, 197, 0.12), transparent 44%),
+    linear-gradient(145deg, #c36d3d 0%, var(--picker-terracotta) 56%, #a8532e 100%);
+  color: var(--picker-ivory);
+  box-shadow:
+    0 28px 70px rgba(53, 33, 21, 0.28),
+    0 5px 16px rgba(53, 33, 21, 0.12);
+  transform-origin: var(--radix-popover-content-transform-origin);
+  animation: picker-enter 200ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+.luxury-calendar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 19px;
+  border-bottom: 1px solid rgba(255, 248, 237, 0.22);
+}
+
+.luxury-calendar__month {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 9px;
+}
+
+.luxury-calendar__month-name {
+  color: #fffaf2;
+  font-family: var(--picker-serif);
+  font-size: clamp(25px, 6vw, 31px);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+}
+
+.luxury-calendar__year {
+  color: #f1d2b5;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+.luxury-calendar__navigation {
+  display: flex;
+  gap: 7px;
+}
+
+.luxury-calendar__nav-button {
+  display: inline-flex;
+  width: 35px;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 248, 237, 0.3);
+  border-radius: 50%;
+  background: rgba(117, 48, 23, 0.18);
+  color: #fff8ed;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.luxury-calendar__nav-button:hover {
+  border-color: var(--picker-ivory);
+  background: rgba(255, 248, 237, 0.13);
+  transform: translateY(-1px);
+}
+
+.luxury-calendar__weekdays,
+.luxury-calendar__days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.luxury-calendar__weekdays {
+  padding-top: 17px;
+  padding-bottom: 7px;
+}
+
+.luxury-calendar__weekday {
+  display: flex;
+  min-height: 25px;
+  align-items: center;
+  justify-content: center;
+  color: #f3d6bd;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.luxury-calendar__days {
+  gap: 4px;
+}
+
+.luxury-calendar__day {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff8ed;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.luxury-calendar__day:not(:disabled):hover {
+  border-color: rgba(255, 248, 237, 0.75);
+  background: rgba(255, 248, 237, 0.13);
+  transform: scale(1.06);
+}
+
+.luxury-calendar__day--muted,
+.luxury-calendar__day--disabled {
+  color: rgba(255, 242, 226, 0.35);
+  cursor: not-allowed;
+}
+
+.luxury-calendar__day--today:not(.luxury-calendar__day--selected) {
+  border-color: rgba(255, 238, 213, 0.72);
+  color: #fffdf8;
+}
+
+.luxury-calendar__day--selected,
+.luxury-calendar__day--selected:hover {
+  border-color: var(--picker-ivory);
+  background: var(--picker-ivory);
+  color: var(--picker-terracotta-deep);
+  font-weight: 600;
+  box-shadow: 0 3px 9px rgba(67, 32, 16, 0.16);
+}
+
+.luxury-calendar__footer {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 248, 237, 0.2);
+  color: #f6ddc6;
+  font-size: 10px;
+  letter-spacing: 0.035em;
+  line-height: 1.5;
+}
+
+/* Time picker: deep walnut panel with ivory options */
+.luxury-time {
+  position: relative;
+  z-index: 1000;
+  width: min(356px, calc(100vw - 32px));
+  padding: 22px;
+  border: 1px solid rgba(194, 160, 106, 0.72);
+  border-radius: 5px;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(194, 160, 106, 0.13), transparent 48%),
+    linear-gradient(145deg, #74533d 0%, var(--picker-walnut) 55%, var(--picker-walnut-deep) 100%);
+  color: var(--picker-ivory);
+  box-shadow:
+    0 28px 70px rgba(35, 24, 17, 0.3),
+    0 5px 16px rgba(35, 24, 17, 0.12);
+  transform-origin: var(--radix-popover-content-transform-origin);
+  animation: picker-enter 200ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+.luxury-time__header {
+  margin-bottom: 19px;
+  padding-bottom: 17px;
+  border-bottom: 1px solid rgba(255, 248, 237, 0.2);
+}
+
+.luxury-time__title {
+  margin: 0;
+  color: #fff8ed;
+  font-family: var(--picker-serif);
+  font-size: 27px;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.luxury-time__subtitle {
+  margin: 7px 0 0;
+  color: #e1cdb8;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.luxury-time__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  max-height: 290px;
+  overflow-y: auto;
+  padding: 1px 3px 2px 1px;
+  scrollbar-color: #b89570 rgba(255, 248, 237, 0.08);
+  scrollbar-width: thin;
+}
+
+.luxury-time__option {
+  display: flex;
+  min-height: 45px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 8px;
+  border: 1px solid rgba(255, 248, 237, 0.2);
+  border-radius: 3px;
+  background: rgba(255, 248, 237, 0.045);
+  color: #fff8ed;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.luxury-time__option:hover {
+  border-color: rgba(226, 197, 151, 0.8);
+  background: rgba(194, 160, 106, 0.17);
+  transform: translateY(-1px);
+}
+
+.luxury-time__option--selected,
+.luxury-time__option--selected:hover {
+  border-color: #d9b783;
+  background: #d9b783;
+  color: #493123;
+  font-weight: 600;
+  box-shadow: 0 3px 9px rgba(25, 16, 10, 0.13);
+}
+
+@keyframes picker-enter {
+  from {
+    opacity: 0;
+    transform: translateY(7px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 600px) {
+  .luxury-select__trigger,
+  .luxury-picker__trigger {
+    min-height: 56px;
+    padding: 14px;
+  }
+
+  .luxury-calendar,
+  .luxury-time {
+    width: min(340px, calc(100vw - 24px));
+    padding: 18px;
+  }
+
+  .luxury-calendar__days,
+  .luxury-calendar__weekdays {
+    gap: 3px;
+  }
+
+  .luxury-calendar__day {
+    font-size: 11px;
+  }
+
+  .luxury-calendar__month-name {
+    font-size: 26px;
+  }
+
+  .luxury-time__grid {
+    max-height: min(300px, 44vh);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .luxury-select__trigger,
+  .luxury-picker__trigger,
+  .luxury-select__item,
+  .luxury-calendar__nav-button,
+  .luxury-calendar__day,
+  .luxury-time__option,
+  .luxury-calendar,
+  .luxury-time,
+  .luxury-select__content {
+    animation: none !important;
+    transition: none !important;
   }
 }
