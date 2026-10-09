@@ -1920,3 +1920,178 @@ button {
     transition: none !important;
   }
 }
+
+/* =========================================================
+   CORNER STONE — UNDERLINED EDITORIAL FORM
+   Inputs and selectors use the site's Playfair Display / DM Sans pairing.
+   Only affects the contact form; dropdown panels remain below their triggers.
+   ========================================================= */
+.contact-form {
+  --contact-rule: rgba(96, 67, 50, 0.32);
+  --contact-rule-hover: rgba(185, 96, 50, 0.68);
+  --contact-rule-focus: #b96032;
+  gap: 27px;
+  font-family: var(--sans, "DM Sans", Arial, sans-serif);
+}
+
+.contact-form .form-field {
+  gap: 8px;
+}
+
+.contact-form .form-field > label {
+  color: var(--contact-walnut, #604332);
+  font-family: var(--serif, "Playfair Display", Georgia, serif);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  line-height: 1.45;
+}
+
+.contact-form .form-field > label span {
+  font-family: var(--sans, "DM Sans", Arial, sans-serif);
+}
+
+.contact-form .form-field > input:not([type="hidden"]),
+.contact-form .form-field > textarea {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  border-bottom: 1px solid var(--contact-rule);
+  border-radius: 0;
+  background: transparent;
+  color: var(--contact-walnut-deep, #3f2b20);
+  font-family: var(--sans, "DM Sans", Arial, sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.7;
+  box-shadow: none;
+  transition: border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.contact-form .form-field > input:not([type="hidden"]) {
+  min-height: 49px;
+  padding: 11px 2px 10px;
+}
+
+.contact-form .form-field > textarea {
+  min-height: 105px;
+  padding: 12px 2px 10px;
+  resize: vertical;
+  border-bottom: 1px solid var(--contact-rule);
+}
+
+.contact-form .form-field > input::placeholder,
+.contact-form .form-field > textarea::placeholder {
+  color: #a18e7c;
+  opacity: 1;
+  font-size: 13px;
+  letter-spacing: 0.005em;
+}
+
+.contact-form .form-field > input:not([type="hidden"]):hover,
+.contact-form .form-field > textarea:hover {
+  border-bottom-color: var(--contact-rule-hover);
+  background: rgba(185, 96, 50, 0.025);
+  box-shadow: 0 1px 0 rgba(185, 96, 50, 0.04);
+}
+
+.contact-form .form-field > input:not([type="hidden"]):focus,
+.contact-form .form-field > textarea:focus {
+  border-bottom: 1.5px solid var(--contact-rule-focus);
+  outline: none;
+  background: rgba(255, 250, 242, 0.42);
+  box-shadow: 0 1px 0 rgba(185, 96, 50, 0.13);
+}
+
+.contact-form .form-field > input:not([type="hidden"]):focus-visible,
+.contact-form .form-field > textarea:focus-visible {
+  outline: none;
+}
+
+.contact-form .form-field > input:invalid:not(:placeholder-shown) {
+  border-bottom-color: #a94e32;
+}
+
+.contact-form .form-field > input:-webkit-autofill,
+.contact-form .form-field > input:-webkit-autofill:hover,
+.contact-form .form-field > input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--contact-walnut-deep, #3f2b20);
+  box-shadow: 0 1px 0 var(--contact-rule) inset;
+  transition: background-color 9999s ease-out;
+}
+
+/* Dropdown/date/time triggers are understated underlined controls. */
+.contact-form .luxury-select__trigger,
+.contact-form .luxury-picker__trigger {
+  min-height: 49px;
+  padding: 11px 2px 10px;
+  border: 0;
+  border-bottom: 1px solid var(--contact-rule);
+  border-radius: 0;
+  background: transparent;
+  color: var(--contact-walnut-deep, #3f2b20);
+  font-family: var(--sans, "DM Sans", Arial, sans-serif);
+  font-size: 14px;
+  box-shadow: none;
+  transition: border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
+}
+
+.contact-form .luxury-select__trigger:hover,
+.contact-form .luxury-picker__trigger:hover {
+  border-color: transparent;
+  border-bottom-color: var(--contact-rule-hover);
+  background: rgba(185, 96, 50, 0.025);
+  box-shadow: 0 1px 0 rgba(185, 96, 50, 0.04);
+}
+
+.contact-form .luxury-select__trigger:focus,
+.contact-form .luxury-picker__trigger:focus,
+.contact-form .luxury-select__trigger[data-state="open"] {
+  border-color: transparent;
+  border-bottom: 1.5px solid var(--contact-rule-focus);
+  outline: none;
+  background: rgba(255, 250, 242, 0.42);
+  box-shadow: 0 1px 0 rgba(185, 96, 50, 0.13);
+}
+
+.contact-form .luxury-select__trigger:focus-visible,
+.contact-form .luxury-picker__trigger:focus-visible {
+  outline: none;
+}
+
+/* Preserve accessible focus on actual menu options and keep panels below the line. */
+.contact-form .luxury-select__content,
+.contact-form .luxury-calendar,
+.contact-form .luxury-time {
+  z-index: 50;
+}
+
+.contact-form .luxury-select__trigger--selected,
+.contact-form .luxury-picker__trigger--selected {
+  color: var(--contact-walnut-deep, #3f2b20);
+}
+
+.contact-form .contact-form__submit .button--dark {
+  font-family: var(--sans, "DM Sans", Arial, sans-serif);
+}
+
+@media (max-width: 640px) {
+  .contact-form .form-field > input:not([type="hidden"]),
+  .contact-form .form-field > textarea,
+  .contact-form .luxury-select__trigger,
+  .contact-form .luxury-picker__trigger {
+    min-height: 49px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-form .form-field > input:not([type="hidden"]),
+  .contact-form .form-field > textarea,
+  .contact-form .luxury-select__trigger,
+  .contact-form .luxury-picker__trigger {
+    transition: none !important;
+  }
+}
