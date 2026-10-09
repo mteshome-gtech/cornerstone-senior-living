@@ -63,7 +63,7 @@ export default function Footer() {
         </div>
 
         <div className="footer__bottom">
-          <p>© {new Date().getFullYear()} Corner Stone Senior Living</p>
+          <p>@2026 Corner Stone Senior Living</p>
 
           <p>Residential by design.</p>
         </div>
