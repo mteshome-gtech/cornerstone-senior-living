@@ -1680,3 +1680,243 @@ button {
     transition: none !important;
   }
 }
+
+/* =========================================================
+   CORNER STONE — LUXURY CONTACT FORM FIELDS
+   Scoped to the contact form so the rest of the site stays unchanged.
+   ========================================================= */
+.contact-form {
+  --contact-ivory: #fffaf2;
+  --contact-cream: #f5ecdf;
+  --contact-walnut: #604332;
+  --contact-walnut-deep: #3f2b20;
+  --contact-terracotta: #b96032;
+  --contact-champagne: #c6a46f;
+  --contact-rule: rgba(96, 67, 50, 0.23);
+  display: grid;
+  gap: 25px;
+  color: var(--contact-walnut-deep);
+}
+
+.contact-form .form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.contact-form .form-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.contact-form .form-field > label {
+  display: block;
+  margin: 0;
+  color: var(--contact-walnut);
+  font-family: "Bodoni Moda", "Cormorant Garamond", "Times New Roman", serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.015em;
+  line-height: 1.35;
+  text-transform: none;
+}
+
+.contact-form .form-field > label span {
+  color: #9a8674;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+}
+
+.contact-form .form-field > input:not([type="hidden"]),
+.contact-form .form-field > textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--contact-rule);
+  border-radius: 3px;
+  outline: none;
+  background: linear-gradient(180deg, #fffdf8 0%, var(--contact-ivory) 100%);
+  color: var(--contact-walnut-deep);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.55;
+  box-shadow: 0 2px 7px rgba(63, 43, 32, 0.025), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  transition: border-color 200ms ease, background-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.contact-form .form-field > input:not([type="hidden"]) {
+  min-height: 56px;
+  padding: 15px 16px;
+}
+
+.contact-form .form-field > textarea {
+  min-height: 150px;
+  padding: 15px 16px;
+  resize: vertical;
+}
+
+.contact-form .form-field > input::placeholder,
+.contact-form .form-field > textarea::placeholder {
+  color: #9d8b79;
+  opacity: 0.9;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+
+.contact-form .form-field > input:hover,
+.contact-form .form-field > textarea:hover {
+  border-color: rgba(96, 67, 50, 0.48);
+  background: #fffdf8;
+}
+
+.contact-form .form-field > input:focus,
+.contact-form .form-field > textarea:focus {
+  border-color: var(--contact-terracotta);
+  background: #fffdf8;
+  box-shadow: 0 0 0 3px rgba(185, 96, 50, 0.09), 0 7px 20px rgba(63, 43, 32, 0.055);
+}
+
+.contact-form .form-field > input:focus-visible,
+.contact-form .form-field > textarea:focus-visible {
+  outline: 1px solid rgba(198, 164, 111, 0.8);
+  outline-offset: 2px;
+}
+
+.contact-form .form-field > input:invalid:not(:placeholder-shown) {
+  border-color: rgba(155, 72, 48, 0.65);
+}
+
+.contact-form .form-field > input:-webkit-autofill,
+.contact-form .form-field > input:-webkit-autofill:hover,
+.contact-form .form-field > input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--contact-walnut-deep);
+  box-shadow: 0 0 0 1000px var(--contact-ivory) inset;
+  transition: background-color 9999s ease-out;
+}
+
+/* Match the dropdown/date/time controls to the text fields' dimensions. */
+.contact-form .luxury-select__trigger,
+.contact-form .luxury-picker__trigger {
+  min-height: 56px;
+  border-color: var(--contact-rule);
+  border-radius: 3px;
+  box-shadow: 0 2px 7px rgba(63, 43, 32, 0.025), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.contact-form .luxury-select__trigger:focus-visible,
+.contact-form .luxury-picker__trigger:focus-visible {
+  outline: 1px solid var(--contact-champagne);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px rgba(185, 96, 50, 0.09);
+}
+
+.contact-form .contact-form__submit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px 22px;
+  margin-top: 5px;
+}
+
+.contact-form .contact-form__submit .button--dark {
+  display: inline-flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 17px 25px;
+  border: 1px solid var(--contact-walnut-deep);
+  border-radius: 2px;
+  background: var(--contact-walnut-deep);
+  color: var(--contact-ivory);
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-align: center;
+  text-transform: uppercase;
+  box-shadow: 0 5px 14px rgba(63, 43, 32, 0.11);
+  transition: background-color 220ms ease, border-color 220ms ease, color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+}
+
+.contact-form .contact-form__submit .button--dark:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: var(--contact-terracotta);
+  background: var(--contact-terracotta);
+  color: #fffaf2;
+  box-shadow: 0 9px 22px rgba(63, 43, 32, 0.16);
+}
+
+.contact-form .contact-form__submit .button--dark:focus-visible {
+  outline: 2px solid var(--contact-champagne);
+  outline-offset: 4px;
+}
+
+.contact-form .contact-form__submit .button--dark:disabled {
+  cursor: wait;
+  opacity: 0.72;
+  transform: none;
+}
+
+.contact-form .contact-form__note {
+  margin: 0;
+  color: #8c7866;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.contact-form .contact-form__error {
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(155, 72, 48, 0.25);
+  border-left: 3px solid #a94e32;
+  border-radius: 2px;
+  background: #fff3ec;
+  color: #803d2b;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+@media (max-width: 640px) {
+  .contact-form {
+    gap: 22px;
+  }
+
+  .contact-form .form-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+
+  .contact-form .form-field > input:not([type="hidden"]),
+  .contact-form .form-field > textarea,
+  .contact-form .luxury-select__trigger,
+  .contact-form .luxury-picker__trigger {
+    min-height: 54px;
+  }
+
+  .contact-form .contact-form__submit {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .contact-form .contact-form__submit .button--dark {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-form .form-field > input:not([type="hidden"]),
+  .contact-form .form-field > textarea,
+  .contact-form .contact-form__submit .button--dark {
+    transition: none !important;
+  }
+}
